@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="168" height="168" viewBox="0 0 168 168">
+  <g fill="none" stroke="#802e2b" stroke-width="1">
+    <path d="M84 0v168M0 84h168" opacity=".24"/>
+    <path d="M42 0v168M126 0v168M0 42h168M0 126h168" stroke-dasharray="2 10" opacity=".19"/>
+    <path d="M0 18V0h18M150 0h18v18M168 150v18h-18M18 168H0v-18" opacity=".38"/>
+    <path d="M75 84h18M84 75v18" opacity=".58"/>
+    <circle cx="84" cy="84" r="13" opacity=".28"/>
+  </g>
+  <g fill="#802e2b" fill-opacity=".48">
+    <circle cx="21" cy="21" r="1.5"/><circle cx="63" cy="21" r="1.5"/><circle cx="105" cy="21" r="1.5"/><circle cx="147" cy="21" r="1.5"/>
+    <circle cx="21" cy="63" r="1.5"/><circle cx="63" cy="63" r="1.5"/><circle cx="105" cy="63" r="1.5"/><circle cx="147" cy="63" r="1.5"/>
+    <circle cx="21" cy="105" r="1.5"/><circle cx="63" cy="105" r="1.5"/><circle cx="105" cy="105" r="1.5"/><circle cx="147" cy="105" r="1.5"/>
+    <circle cx="21" cy="147" r="1.5"/><circle cx="63" cy="147" r="1.5"/><circle cx="105" cy="147" r="1.5"/><circle cx="147" cy="147" r="1.5"/>
+    <circle cx="0" cy="0" r="3"/><circle cx="168" cy="0" r="3"/><circle cx="0" cy="168" r="3"/><circle cx="168" cy="168" r="3"/>
+    <circle cx="84" cy="84" r="2.5"/>
+  </g>
+</svg>

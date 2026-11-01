@@ -32,6 +32,7 @@ Deschide `http://localhost:4173`.
 
 - `index.html`: texte, date de contact, Google Maps, legături sociale și metadate.
 - `style.css`: culori în `:root`, tipografie, geometrie, animații și layout responsive.
+- `ornaments.css` și `assets/drafting-grid.svg`: rețeaua vizibilă de linii și puncte, chenare, marcaje simetrice și variantele pentru fundalurile închise.
 - `app.js`: galeria, filtrele, asocierea fotografiilor cu postările originale și interacțiunile.
 - `booking.css`, `booking.js`, `calendar-core.js`: calendarul de cereri, regulile de dată și oră și pregătirea mesajului pentru salon.
 - `assets/`: fotografii și fonturi servite local.
