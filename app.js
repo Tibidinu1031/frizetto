@@ -6,7 +6,6 @@
   const pad = n => String(n).padStart(2, '0');
 
   // Let the platform handle focus containment and Escape in native dialogs.
-  const bookingDialog = $('#booking-dialog');
   const lightbox = $('#lightbox');
   const syncModalState = () => document.body.classList.toggle('modal-open', $$('dialog[open]').length > 0);
   const openDialog = dialog => { if (!dialog.open) dialog.showModal(); syncModalState(); };
@@ -19,14 +18,6 @@
       if (event.clientX < bounds.left || event.clientX > bounds.right || event.clientY < bounds.top || event.clientY > bounds.bottom) dialog.close();
     });
   });
-  $$('[data-book]').forEach(button => button.addEventListener('click', () => {
-    closeMenu();
-    if (button.dataset.book) {
-      const radio = $$('input[name="service"]').find(input => input.value === button.dataset.book);
-      if (radio) radio.checked = true;
-    }
-    openDialog(bookingDialog);
-  }));
 
   const menuToggle = $('.menu-toggle');
   const mobileNav = $('#mobile-nav');
