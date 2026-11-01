@@ -16,8 +16,9 @@ assert.equal(ids.length,new Set(ids).size,'Duplicate HTML ids');
 for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
   const ref = match[1];
   if (/^(https?:|tel:|data:)/.test(ref)) continue;
-  assert(!ref.startsWith('/'),`Absolute path breaks project GitHub Pages: ${ref}`);
-  assert(fs.existsSync(path.join(root,ref)),`Missing local asset: ${ref}`);
+  const assetPath = ref.split(/[?#]/)[0];
+  assert(!assetPath.startsWith('/'),`Absolute path breaks project GitHub Pages: ${ref}`);
+  assert(fs.existsSync(path.join(root,assetPath)),`Missing local asset: ${ref}`);
 }
 for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]),`Broken anchor: ${match[1]}`);
 for (const match of js.matchAll(/src:'(assets\/[^']+)'/g)) assert(fs.existsSync(path.join(root,match[1])),`Missing gallery image: ${match[1]}`);
