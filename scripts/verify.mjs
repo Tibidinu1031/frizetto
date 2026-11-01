@@ -1,0 +1,26 @@
+import fs from 'node:fs';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+const root = path.resolve(import.meta.dirname, '..');
+const html = fs.readFileSync(path.join(root,'index.html'),'utf8');
+const js = fs.readFileSync(path.join(root,'app.js'),'utf8');
+const css = fs.readFileSync(path.join(root,'style.css'),'utf8');
+assert(!/[\u2013\u2014\u2015]/u.test(html+js),'Long dash found in page source');
+assert(html.includes('<html lang="ro">'),'Romanian language missing');
+assert(html.includes('tel:+40729053642'),'Phone missing');
+for (const url of ['https://www.facebook.com/17CUTS/','https://www.instagram.com/har_studio17/']) assert(html.includes(url),`Missing social link: ${url}`);
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+assert.equal(ids.length,new Set(ids).size,'Duplicate HTML ids');
+for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
+  const ref = match[1];
+  if (/^(https?:|tel:|data:)/.test(ref)) continue;
+  assert(!ref.startsWith('/'),`Absolute path breaks project GitHub Pages: ${ref}`);
+  assert(fs.existsSync(path.join(root,ref)),`Missing local asset: ${ref}`);
+}
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]),`Broken anchor: ${match[1]}`);
+for (const match of js.matchAll(/src:'(assets\/[^']+)'/g)) assert(fs.existsSync(path.join(root,match[1])),`Missing gallery image: ${match[1]}`);
+for (const match of fs.readFileSync(path.join(root,'assets/fonts.css'),'utf8').matchAll(/url\(([^)]+)\)/g)) assert(fs.existsSync(path.join(root,'assets',match[1])),`Missing font: ${match[1]}`);
+assert(css.includes('prefers-reduced-motion'),'Reduced motion missing');
+assert(html.includes('output=embed'),'Google Maps missing');
+assert(fs.existsSync(path.join(root,'.nojekyll')),'.nojekyll missing');
+console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, Google Maps, language, reduced motion, no long dashes.');

@@ -1,0 +1,12 @@
+node_modules/
+har-studio/
+dist/
+.sites/
+outputs/
+.env*
+*.zip
+*.tar.gz
+research.html
+source-*.html
+contact-sheet.jpg
+qa/
