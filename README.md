@@ -2,6 +2,10 @@
 
 Site static pentru Har Studio și Har Academy, Târgoviște. HTML, CSS și JavaScript, fără framework, pachete sau instalare. `index.html` se află în rădăcină.
 
+Repository: [Tibidinu1031/harstudio](https://github.com/Tibidinu1031/harstudio).
+
+Adresa GitHub Pages: [tibidinu1031.github.io/harstudio](https://tibidinu1031.github.io/harstudio/).
+
 ## Publicare pe GitHub Pages
 
 1. Creează un repository GitHub și încarcă fișierele din acest folder. Păstrează `index.html`, `style.css`, `app.js`, `.nojekyll` și folderul `assets` direct în rădăcina repository-ului.
@@ -12,7 +16,7 @@ Site static pentru Har Studio și Har Academy, Târgoviște. HTML, CSS și JavaS
 
 Toate căile către resurse sunt relative. Site-ul funcționează atât pe un domeniu propriu, cât și la `https://utilizator.github.io/nume-repository/`. Nu este necesar un build sau un fișier de configurare pentru rulare.
 
-Opțional, după alegerea URL-ului final, completează o adresă absolută pentru `og:image` și adaugă `og:url` în `index.html`, pentru previzualizări sociale complete. Pagina este portabilă și nu are un domeniu de găzduire fixat în cod.
+Metadatele `og:url`, `og:image`, adresa canonică și URL-ul JSON-LD sunt configurate pentru `https://tibidinu1031.github.io/harstudio/`. Dacă schimbi repository-ul sau folosești un domeniu propriu, actualizează aceste adrese în `index.html`. Resursele paginii păstrează căi relative.
 
 ## Previzualizare locală
 
