@@ -41,9 +41,10 @@
 
   // A single open service keeps the image and the description in sync.
   const serviceImages = [
-    {src:'assets/finishing.jpg', alt:'Look finisat la Har Studio'},
-    {src:'assets/burst-fade.jpg', alt:'Burst fade cu tranziție precisă, realizat la Har Studio'},
-    {src:'assets/fade-steps.jpg', alt:'Textură și volum, detaliu din portofoliul Har Studio'}
+    {src:'assets/textured-crop.jpg', alt:'Tunsoare modernă cu fade și textură, realizată la Frizetto'},
+    {src:'assets/crew-cut.jpg', alt:'Tunsoare clasică scurtă, din profil, realizată la Frizetto'},
+    {src:'assets/fade-beard.jpg', alt:'Barbă plină, conturată și aranjată la Frizetto'},
+    {src:'assets/french-crop-beard.jpg', alt:'Tunsoare cu breton și barbă aranjată, lucrate împreună la Frizetto'}
   ];
   $$('[data-service]').forEach(button => button.addEventListener('click', () => {
     const selected = Number(button.dataset.service);
@@ -56,16 +57,19 @@
     const photo = $('#service-photo');
     photo.src = serviceImages[selected].src;
     photo.alt = serviceImages[selected].alt;
-    $('#service-image-number').textContent = `${pad(selected + 1)} / 03`;
+    $('#service-image-number').textContent = `${pad(selected + 1)} / ${pad(serviceImages.length)}`;
   }));
 
   const photos = [
-    {src:'assets/burst-fade.jpg',title:'Burst fade',category:'cuts',label:'TUNSORI',alt:'Profil lateral al unei tunsori burst fade realizate la Har Studio',url:'https://www.instagram.com/har_studio17/reel/DXcizfyjEx1/'},
-    {src:'assets/fade-steps.jpg',title:'Fade Steps',category:'cuts',label:'TUNSORI',alt:'Tunsoare fade cu volum și textură, din portofoliul Har Studio',url:'https://www.instagram.com/har_studio17/reel/DUvl-1XDOKu/'},
-    {src:'assets/finishing.jpg',title:'Ultimul detaliu',category:'cuts',label:'TUNSORI',alt:'Client cu tunsoare scurtă și styling finisat la Har Studio',url:'https://www.instagram.com/har_studio17/reel/DSx049VDDj7/'},
-    {src:'assets/in-the-studio.jpg',title:'În mâini bune',category:'studio',label:'DIN STUDIO',alt:'Barberul Har Studio lucrează atent la o tunsoare fade',url:'https://www.instagram.com/har_studio17/reel/DXm4vmnjLcF/'},
-    {src:'assets/precision.jpg',title:'Precizie în lucru',category:'studio',label:'DIN STUDIO',alt:'Detaliu al conturului lucrat cu trimmerul, la Har Studio',url:'https://www.instagram.com/har_studio17/reel/DSujunAjLd0/'},
-    {src:'assets/masterclass.jpg',title:'Har Academy',category:'academy',label:'EDUCAȚIE',alt:'Afiș din arhiva unui masterclass Har Academy dedicat tunsorilor și stylingului',url:'https://www.instagram.com/har_studio17/p/DH4Dc-3MC6n/'}
+    {src:'assets/textured-crop.jpg',title:'Textured crop',category:'cuts',label:'TUNSORI',alt:'Tunsoare textured crop cu fade, din profil, realizată la Frizetto',url:'https://www.facebook.com/photo/?fbid=915470763061003'},
+    {src:'assets/mid-fade.jpg',title:'Mid fade',category:'cuts',label:'TUNSORI',alt:'Mid fade cu textură pe creștet, văzut din spate, la Frizetto',url:'https://www.facebook.com/photo/?fbid=825390945508990'},
+    {src:'assets/french-crop-beard.jpg',title:'French crop & barbă',category:'beard',label:'BARBĂ',alt:'Tunsoare french crop cu breton și barbă conturată, la Frizetto',url:'https://www.facebook.com/photo/?fbid=915470739727672'},
+    {src:'assets/high-fade.jpg',title:'High fade',category:'cuts',label:'TUNSORI',alt:'High fade cu textură scurtă pe creștet, realizat la Frizetto',url:'https://www.facebook.com/photo/?fbid=915469679727778'},
+    {src:'assets/frizetto-fade-front.jpg',title:'Fade cu volum',category:'cuts',label:'TUNSORI',alt:'Fade cu volum ridicat în față, cu sigla Frizetto pe peretele din spate',url:'https://www.facebook.com/photo/?fbid=825390952175656'},
+    {src:'assets/fade-beard.jpg',title:'Fade & barbă',category:'beard',label:'BARBĂ',alt:'Fade scurt și barbă plină, aranjată la Frizetto',url:'https://www.facebook.com/photo/?fbid=721681202546632'},
+    {src:'assets/crew-cut.jpg',title:'Crew cut',category:'cuts',label:'TUNSORI',alt:'Tunsoare crew cut, din profil, realizată la Frizetto',url:'https://www.facebook.com/photo/?fbid=915469639727782'},
+    {src:'assets/buzz-fade.jpg',title:'Buzz cut',category:'cuts',label:'TUNSORI',alt:'Buzz cut cu fade, văzut din spate, în interiorul frizeriei Frizetto',url:'https://www.facebook.com/photo/?fbid=915469626394450'},
+    {src:'assets/entrance.jpg',title:'Intrarea Frizetto',category:'studio',label:'FRIZERIA',alt:'Intrarea frizeriei Frizetto, cu stâlp de frizerie și sigla pe ușa de sticlă',url:'https://www.facebook.com/photo/?fbid=769953114279436'}
   ];
   let filtered = [...photos];
   let current = 0;
@@ -82,7 +86,7 @@
       const img = document.createElement('img');
       img.src = photo.src; img.alt = photo.alt; img.width = 361; img.height = 640; img.loading = 'lazy'; img.draggable = false;
       const top = document.createElement('span'); top.className = 'card-top';
-      top.innerHTML = `<span>HAR STUDIO / ${pad(index + 1)}</span><svg aria-hidden="true"><use href="#diagonal"/></svg>`;
+      top.innerHTML = `<span>FRIZETTO / ${pad(index + 1)}</span><svg aria-hidden="true"><use href="#diagonal"/></svg>`;
       const bottom = document.createElement('span'); bottom.className = 'card-bottom';
       const title = document.createElement('span'); title.textContent = photo.title.toLocaleUpperCase('ro');
       const open = document.createElement('span'); open.className = 'card-open'; open.textContent = 'MĂREȘTE ↗';
@@ -113,7 +117,7 @@
     });
     $('#gallery-count').textContent = `${pad(current + 1)} / ${pad(filtered.length)}`;
     $('#gallery-title').textContent = filtered[current].title;
-    $('#gallery-category').textContent = `${filtered[current].label} / HAR STUDIO`;
+    $('#gallery-category').textContent = `${filtered[current].label} / FRIZETTO`;
     const single = filtered.length === 1;
     [$('#gallery-prev'), $('#gallery-next'), $('#lightbox-prev'), $('#lightbox-next')].forEach(button => { button.disabled = single; button.style.opacity = single ? '.3' : ''; });
     if (lightbox.open) paintLightbox();
@@ -125,7 +129,7 @@
     $('#lightbox-image').src = photo.src;
     $('#lightbox-image').alt = photo.alt;
     $('#lightbox-title').textContent = photo.title;
-    $('#lightbox-count').textContent = `HAR STUDIO / ${pad(current + 1)} DIN ${pad(filtered.length)}`;
+    $('#lightbox-count').textContent = `FRIZETTO / ${pad(current + 1)} DIN ${pad(filtered.length)}`;
     $('#lightbox-source').href = photo.url;
   }
   function openLightbox() { paintLightbox(); openDialog(lightbox); }

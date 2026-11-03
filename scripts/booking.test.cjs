@@ -21,22 +21,35 @@ test('leap years and December rollover use date-only arithmetic',()=>{
   assert.equal(core.addDays('2026-12-31',1),'2027-01-01');
   assert.equal(core.addDays('2028-02-28',1),'2028-02-29');
 });
-test('requests reject missing values, past dates and elapsed times at the studio',()=>{
-  const now = new Date('2026-11-01T08:30:00Z');
+test('opening hours follow the shop week and close on Sunday',()=>{
+  assert.deepEqual(core.openingHours('2026-11-02'),['10:00','19:00']);
+  assert.deepEqual(core.openingHours('2026-11-06'),['10:00','19:00']);
+  assert.deepEqual(core.openingHours('2026-11-07'),['10:00','14:00']);
+  assert.equal(core.openingHours('2026-11-08'),null);
+  assert.equal(core.openingHours('not-a-date'),null);
+});
+test('requests reject missing values, past dates, closed days and times outside the program',()=>{
+  const now = new Date('2026-11-02T08:30:00Z');
   assert.equal(core.validateRequest({date:null,time:'12:00'},now).field,'date');
   assert.equal(core.validateRequest({date:'2026-10-31',time:'12:00'},now).valid,false);
-  assert.equal(core.validateRequest({date:'2026-11-01',time:'10:30'},now).valid,false);
-  assert.equal(core.validateRequest({date:'2026-11-01',time:'10:31'},now).valid,true);
-  assert.equal(core.validateRequest({date:'2026-11-02',time:'09:00'},now).valid,true);
-  assert.equal(core.validateRequest({date:'2026-11-02',time:'24:00'},now).valid,false);
-  assert.equal(core.validateRequest({date:'2026-11-02',time:''},now).field,'time');
+  assert.equal(core.validateRequest({date:'2026-11-02',time:'10:30'},now).valid,false);
+  assert.equal(core.validateRequest({date:'2026-11-02',time:'10:31'},now).valid,true);
+  assert.equal(core.validateRequest({date:'2026-11-03',time:'09:59'},now).field,'time');
+  assert.equal(core.validateRequest({date:'2026-11-03',time:'18:30'},now).valid,true);
+  assert.equal(core.validateRequest({date:'2026-11-03',time:'19:00'},now).valid,false);
+  assert.equal(core.validateRequest({date:'2026-11-07',time:'13:30'},now).valid,true);
+  assert.equal(core.validateRequest({date:'2026-11-07',time:'14:00'},now).field,'time');
+  assert.equal(core.validateRequest({date:'2026-11-08',time:'12:00'},now).field,'date');
+  assert.equal(core.validateRequest({date:'2026-11-03',time:'24:00'},now).valid,false);
+  assert.equal(core.validateRequest({date:'2026-11-03',time:''},now).field,'time');
 });
 test('the handoff includes the actual selection and asks for confirmation',()=>{
-  const message = core.buildMessage({service:'Skin fade',date:'2026-11-03',time:'14:15',name:'  Alex\n  Pop  '});
-  assert.match(message,/Serviciu: Skin fade/);
+  const message = core.buildMessage({service:'Tuns și aranjat barbă',date:'2026-11-03',time:'14:15',name:'  Alex\n  Pop  '});
+  assert.match(message,/Frizetto Barber Shop/);
+  assert.match(message,/Serviciu: Tuns și aranjat barbă/);
   assert.match(message,/3 noiembrie 2026/);
   assert.match(message,/14:15 \(ora României\)/);
   assert.match(message,/Nume: Alex Pop/);
   assert.match(message,/confirma disponibilitatea și tariful/);
-  assert.throws(()=>core.buildMessage({service:'Unknown',date:'2026-11-03',time:'14:15'}));
+  assert.throws(()=>core.buildMessage({service:'Skin fade',date:'2026-11-03',time:'14:15'}));
 });

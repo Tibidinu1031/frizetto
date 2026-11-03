@@ -1,14 +1,14 @@
-# HAR Studio
+# Frizetto Barber Shop
 
-Site static pentru Har Studio și Har Academy, Târgoviște. HTML, CSS și JavaScript, fără framework, pachete sau instalare. `index.html` se află în rădăcină.
+Site static pentru Frizetto Barber Shop (CIP Barbering Co.), Calea București nr. 44, Brașov. HTML, CSS și JavaScript, fără framework, pachete sau instalare. `index.html` se află în rădăcină.
 
-Repository: [Tibidinu1031/harstudio](https://github.com/Tibidinu1031/harstudio).
+Repository propus: `Tibidinu1031/frizetto`, separat de site-ul Har Studio.
 
-Adresa GitHub Pages: [tibidinu1031.github.io/harstudio](https://tibidinu1031.github.io/harstudio/).
+Adresa GitHub Pages propusă: `https://tibidinu1031.github.io/frizetto/`.
 
 ## Publicare pe GitHub Pages
 
-1. Creează un repository GitHub și încarcă fișierele din acest folder. Păstrează `index.html`, fișierele `.css` și `.js`, `.nojekyll` și folderul `assets` direct în rădăcina repository-ului.
+1. Creează repository-ul `frizetto` pe GitHub și încarcă fișierele din acest folder. Păstrează `index.html`, fișierele `.css` și `.js`, `.nojekyll` și folderul `assets` direct în rădăcina repository-ului.
 2. În repository, deschide **Settings → Pages**.
 3. La **Build and deployment**, selectează **Deploy from a branch**.
 4. Selectează branch-ul **main**, folderul **/(root)** și apasă **Save**.
@@ -16,7 +16,7 @@ Adresa GitHub Pages: [tibidinu1031.github.io/harstudio](https://tibidinu1031.git
 
 Toate căile către resurse sunt relative. Site-ul funcționează atât pe un domeniu propriu, cât și la `https://utilizator.github.io/nume-repository/`. Nu este necesar un build sau un fișier de configurare pentru rulare.
 
-Metadatele `og:url`, `og:image`, adresa canonică și URL-ul JSON-LD sunt configurate pentru `https://tibidinu1031.github.io/harstudio/`. Dacă schimbi repository-ul sau folosești un domeniu propriu, actualizează aceste adrese în `index.html`. Resursele paginii păstrează căi relative.
+Metadatele `og:url`, `og:image`, adresa canonică și URL-urile JSON-LD sunt configurate pentru `https://tibidinu1031.github.io/frizetto/`. Dacă folosești alt repository sau un domeniu propriu, actualizează aceste adrese în `index.html`. Resursele paginii păstrează căi relative.
 
 ## Previzualizare locală
 
@@ -30,25 +30,34 @@ Deschide `http://localhost:4173`.
 
 ## Personalizare
 
-- `index.html`: texte, date de contact, Google Maps, legături sociale și metadate.
+- `index.html`: texte, date de contact, program, Google Maps, legături sociale și metadate.
 - `style.css`: culori în `:root`, tipografie, geometrie, animații și layout responsive.
 - `ornaments.css` și `assets/drafting-grid.svg`: liniile și punctele de intersecție, chenarele și variantele pentru fundalurile închise.
 - `hero.css`: încadrarea meniului, hero-ului și bannerului în primul ecran pe toate dimensiunile; animația continuă a bannerului spre stânga, cu pauză la hover și respectarea preferinței de mișcare redusă.
+- `intro.css`, `intro.js`: ecranul de deschidere cu logo-ul Frizetto.
 - `app.js`: galeria, filtrele, asocierea fotografiilor cu postările originale și interacțiunile.
-- `booking.css`, `booking.js`, `calendar-core.js`: calendarul de cereri, regulile de dată și oră și pregătirea mesajului pentru salon.
-- `assets/`: fotografii și fonturi servite local.
+- `booking.css`, `booking.js`, `calendar-core.js`: calendarul de cereri, programul frizeriei, regulile de dată și oră și mesajul pentru WhatsApp.
+- `assets/`: fotografii, straturile logo-ului și fonturi servite local.
 
-Galeria se navighează prin săgețile de pe ecran, tastele stânga/dreapta după focalizarea galeriei și glisare pe mobil. Click pe imaginea centrală deschide vizualizarea mărită. Escape închide dialogurile. Preferința de mișcare redusă a sistemului este respectată. Combinația de taste Alt+Tab rămâne controlată de sistemul de operare; efectul vizual al galeriei este inspirat de schimbarea între ferestre.
+## Ecranul de deschidere
 
-Toate butoanele de programare, inclusiv cel din hero, duc la secțiunea **Programări**. Butoanele din servicii preselectează serviciul corespunzător. Vizitatorul alege ziua, ora preferată și, opțional, numele. Calendarul folosește ora României, blochează zilele trecute și validează orele care au trecut pentru ziua curentă. Navigarea tastaturii include săgețile, Home, End, PageUp și PageDown.
+La încărcare, logo-ul apare în centrul paginii, desenat pe straturi: rândul de sus, numele dezvăluit de o linie ca o lamă de brici, „BARBER SHOP” și mustața. Logo-ul se înclină după cursor, iar mustața se răsucește la hover sau la atingere. Ecranul se deschide în două panouri după aproximativ 3,6 secunde sau imediat la click, tastă, scroll sau glisare. Fiecare joacă cu mustața mai adaugă puțin timp, fără să depășească 8,5 secunde. Un script mic din `<head>` activează ecranul înainte de prima randare. Dacă JavaScript nu rulează, o animație CSS îl ascunde după 9 secunde. Cu mișcare redusă, logo-ul apare fără animații și dispare după 1,6 secunde.
 
-**Pregătește cererea** generează mesajul care poate fi copiat și trimis de vizitator pe Instagram. Apelul telefonic rămâne o opțiune directă. Alegerea datei nu indică un loc liber și nu creează o rezervare confirmată. Disponibilitatea și tariful sunt confirmate de salon. Nu se stochează nume sau programări și nu se trimite nimic automat; clipboard-ul este folosit doar la apăsarea butonului de copiere.
+Straturile logo-ului (`assets/logo-*.png`) și `assets/frizetto-logo.png` sunt extrase din logo-ul primit de la client. Cerneala a fost păstrată pe fundal transparent și mărită de trei ori.
+
+## Programări
+
+Toate butoanele de programare, inclusiv cel din hero, duc la secțiunea **Programări**. Butoanele din servicii preselectează serviciul corespunzător. Vizitatorul alege ziua, ora preferată și, opțional, numele. Calendarul folosește ora României, blochează zilele trecute și duminicile și validează ora după programul zilei: luni - vineri 10:00 - 19:00, sâmbătă 10:00 - 14:00. Navigarea cu tastatura include săgețile, Home, End, PageUp și PageDown și sare peste zilele închise.
+
+**Pregătește cererea** generează mesajul, iar **Trimite pe WhatsApp** deschide conversația cu 0745 494 412 și mesajul deja completat. Mesajul poate fi copiat și trimis prin SMS. Apelul telefonic rămâne o opțiune directă. Alegerea datei nu indică un loc liber și nu creează o rezervare confirmată. Disponibilitatea și tariful sunt confirmate de frizerie. Nu se stochează nume sau programări și nu se trimite nimic automat.
+
+Frizetto nu are profil MERO. Dacă își face unul, butoanele de programare pot trimite direct la profilul MERO.
 
 ## Fotografii și informații
 
-Fotografiile și cadrele din clipuri provin de pe contul public [@har_studio17](https://www.instagram.com/har_studio17/). Sunt păstrate local pentru a evita expirarea adreselor CDN. Fiecare fotografie din galerie are legătură către postarea originală. Afișul masterclassului este prezentat ca material de arhivă, nu ca eveniment viitor. Vezi `ASSETS.md` pentru sursele exacte.
+Fotografiile provin de pe pagina publică [Frizetto Barber Shop](https://www.facebook.com/FRIZETTO/). Sunt păstrate local pentru a evita expirarea adreselor CDN. Fiecare fotografie din galerie are legătură către postarea originală. Vezi `ASSETS.md` pentru sursele exacte.
 
-Adresa și telefonul provin din brief. Harta Google indică adresa furnizată: Strada Constantin Brâncoveanu 67, Târgoviște. Orele de funcționare și prețurile nu au fost adăugate deoarece nu au fost confirmate.
+Adresa, telefonul, WhatsApp-ul și programul provin din profilul Google Business și din pagina de Facebook a frizeriei. Serviciile urmează lista de pe peretele frizeriei: tuns modern, tuns clasic, aranjat barbă, tuns și aranjat barbă. Prețurile nu au fost afișate, deoarece fotografia listei este din 2023 și nu se citește complet.
 
 ## Verificări și previzualizare găzduită
 

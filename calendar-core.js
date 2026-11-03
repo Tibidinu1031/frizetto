@@ -1,7 +1,9 @@
 /* Date-only arithmetic uses UTC; requested appointment times use Romania's clock. */
 (function (root) {
   'use strict';
-  const services = Object.freeze(['Tuns masculin', 'Skin fade', 'Textură & styling']);
+  const services = Object.freeze(['Tuns modern', 'Tuns clasic', 'Aranjat barbă', 'Tuns și aranjat barbă']);
+  // Opening hours by UTC weekday, 0 being Sunday. A request has to start before closing time.
+  const hours = Object.freeze([null, ...Array(5).fill(Object.freeze(['10:00','19:00'])), Object.freeze(['10:00','14:00'])]);
   const pad = n => String(n).padStart(2, '0');
   function studioClock(now = new Date()) {
     const parts = new Intl.DateTimeFormat('en-GB', {
@@ -32,6 +34,10 @@
       return day > 0 && day <= length ? `${year}-${pad(month+1)}-${pad(day)}` : null;
     });
   }
+  function openingHours(key) {
+    const date = parseDate(key);
+    return date ? hours[date.getUTCDay()] : null;
+  }
   function formatDate(key, options = {}) {
     const date = parseDate(key);
     if (!date) return '';
@@ -40,7 +46,10 @@
   function validateRequest(request, now = new Date()) {
     const clock = studioClock(now);
     if (!parseDate(request.date) || request.date < clock.date) return {valid:false,field:'date',message:'Alege o zi de astăzi încolo, din calendar.'};
+    const open = openingHours(request.date);
+    if (!open) return {valid:false,field:'date',message:'Duminica frizeria este închisă. Alege o altă zi.'};
     if (!/^([01]\d|2[0-3]):[0-5]\d$/.test(request.time || '')) return {valid:false,field:'time',message:'Alege ora la care ai prefera să vii.'};
+    if (request.time < open[0] || request.time >= open[1]) return {valid:false,field:'time',message:`În ziua aleasă programul este ${open[0]} - ${open[1]}. Alege o oră din acest interval.`};
     if (request.date === clock.date && request.time <= clock.time) return {valid:false,field:'time',message:'Pentru astăzi, alege o oră viitoare sau selectează o altă zi.'};
     return {valid:true};
   }
@@ -48,7 +57,7 @@
     if (!services.includes(request.service) || !parseDate(request.date) || !/^([01]\d|2[0-3]):[0-5]\d$/.test(request.time || '')) throw new Error('Invalid appointment request');
     const name = String(request.name || '').trim().replace(/\s+/g,' ').slice(0,60);
     return [
-      'Bună! Aș dori o programare la Har Studio.',
+      'Bună! Aș dori o programare la Frizetto Barber Shop.',
       `Serviciu: ${request.service}`,
       `Data preferată: ${formatDate(request.date)}`,
       `Ora preferată: ${request.time} (ora României)`,
@@ -56,7 +65,7 @@
       'Îmi puteți confirma disponibilitatea și tariful? Mulțumesc!'
     ].join('\n');
   }
-  const api = Object.freeze({services,studioClock,parseDate,dateKey,addDays,monthCells,formatDate,validateRequest,buildMessage});
+  const api = Object.freeze({services,studioClock,parseDate,dateKey,addDays,monthCells,openingHours,formatDate,validateRequest,buildMessage});
   if (typeof module === 'object' && module.exports) module.exports = api;
-  else root.HarCalendar = api;
+  else root.BookingCalendar = api;
 })(typeof window === 'undefined' ? globalThis : window);

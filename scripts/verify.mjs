@@ -7,10 +7,15 @@ const js = fs.readFileSync(path.join(root,'app.js'),'utf8');
 const css = fs.readFileSync(path.join(root,'style.css'),'utf8');
 const bookingJs = fs.readFileSync(path.join(root,'booking.js'),'utf8');
 const calendarCore = fs.readFileSync(path.join(root,'calendar-core.js'),'utf8');
-assert(!/[\u2013\u2014\u2015]/u.test(html+js+bookingJs+calendarCore),'Long dash found in page source');
+const introJs = fs.readFileSync(path.join(root,'intro.js'),'utf8');
+const introCss = fs.readFileSync(path.join(root,'intro.css'),'utf8');
+assert(!/[\u2013\u2014\u2015]/u.test(html+js+bookingJs+calendarCore+introJs),'Long dash found in page source');
+assert(!/har[ _]?studio|17CUTS|0729 ?053 ?642/i.test(html+js+bookingJs+calendarCore),'Previous client data left in page source');
 assert(html.includes('<html lang="ro">'),'Romanian language missing');
-assert(html.includes('tel:+40729053642'),'Phone missing');
-for (const url of ['https://www.facebook.com/17CUTS/','https://www.instagram.com/har_studio17/']) assert(html.includes(url),`Missing social link: ${url}`);
+assert(html.includes('tel:+40745494412'),'Phone missing');
+for (const url of ['https://www.facebook.com/FRIZETTO/','https://www.instagram.com/frizetto.brasov/','https://wa.me/40745494412']) assert(html.includes(url),`Missing social link: ${url}`);
+assert(html.includes("classList.add('intro-on')") && html.includes('class="intro"'),'Logo intro missing');
+assert(introCss.includes('intro-failsafe'),'Logo intro needs a CSS failsafe');
 const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
 assert.equal(ids.length,new Set(ids).size,'Duplicate HTML ids');
 for (const match of html.matchAll(/(?:src|href)="([^"#]+)"/g)) {
@@ -26,4 +31,4 @@ for (const match of fs.readFileSync(path.join(root,'assets/fonts.css'),'utf8').m
 assert(css.includes('prefers-reduced-motion'),'Reduced motion missing');
 assert(html.includes('output=embed'),'Google Maps missing');
 assert(fs.existsSync(path.join(root,'.nojekyll')),'.nojekyll missing');
-console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, Google Maps, language, reduced motion, no long dashes.');
+console.log('Verified: root entry point, relative assets, local fonts, anchors, social links, logo intro, Google Maps, language, reduced motion, no long dashes, no previous client data.');
