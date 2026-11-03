@@ -2,13 +2,13 @@
 
 Site static pentru Frizetto Barber Shop (CIP Barbering Co.), Calea București nr. 44, Brașov. HTML, CSS și JavaScript, fără framework, pachete sau instalare. `index.html` se află în rădăcină.
 
-Repository propus: `Tibidinu1031/frizetto`, separat de site-ul Har Studio.
+Repository: [Tibidinu1031/frizetto](https://github.com/Tibidinu1031/frizetto), separat de site-ul Har Studio.
 
-Adresa GitHub Pages propusă: `https://tibidinu1031.github.io/frizetto/`.
+Adresa GitHub Pages: [tibidinu1031.github.io/frizetto](https://tibidinu1031.github.io/frizetto/).
 
 ## Publicare pe GitHub Pages
 
-1. Creează repository-ul `frizetto` pe GitHub și încarcă fișierele din acest folder. Păstrează `index.html`, fișierele `.css` și `.js`, `.nojekyll` și folderul `assets` direct în rădăcina repository-ului.
+1. Încarcă fișierele din acest folder în repository. Păstrează `index.html`, fișierele `.css` și `.js`, `.nojekyll` și folderul `assets` direct în rădăcina repository-ului.
 2. În repository, deschide **Settings → Pages**.
 3. La **Build and deployment**, selectează **Deploy from a branch**.
 4. Selectează branch-ul **main**, folderul **/(root)** și apasă **Save**.
