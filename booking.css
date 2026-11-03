@@ -1,44 +1,44 @@
 /* Appointment requests stay transparent: a preferred time needs studio confirmation. */
 .appointments{background:var(--paper-light);border-top:1px solid var(--line)}
 .appointment-heading h2{font-size:clamp(70px,7.4vw,118px)}
-.appointment-heading h2 em{font-size:1.35em;line-height:.8;color:var(--red);letter-spacing:-.04em}
+.appointment-heading h2 em{font-size:1.35em;line-height:.8;color:var(--blue);letter-spacing:-.04em}
 .appointment-heading>p{max-width:300px;line-height:1.9}
-.appointment-layout{display:grid;grid-template-columns:1.3fr 1fr;border:1px solid var(--line);position:relative;background:var(--paper-light)}
+.appointment-layout{display:grid;grid-template-columns:1.3fr 1fr;border:1px solid var(--ink);position:relative;background:var(--paper-light)}
 .appointment-form{padding:36px 40px 28px;min-width:0}
 .appointment-services{margin:0;padding:0}
 .appointment-services legend,.calendar-step{font-size:8px;letter-spacing:1.25px;display:flex;gap:13px;align-items:center}
-.appointment-services legend>span,.calendar-step>span,.appointment-field>.micro>span:first-child:not(.field-optional){color:var(--red)}
+.appointment-services legend>span,.calendar-step>span,.appointment-field>.micro>span:first-child:not(.field-optional){color:var(--blue)}
 .appointment-service-options{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:17px}
 .appointment-service-options label{position:relative;cursor:pointer;display:flex;min-width:0}
 .appointment-service-options input{position:absolute;opacity:0;width:1px;height:1px;margin:0}
 .appointment-service-options label>span{padding:12px 8px;border:1px solid var(--line);width:100%;font-size:10px;text-align:center;line-height:1.45;display:flex;align-items:center;justify-content:center;transition:background .25s,color .25s,border-color .25s}
-.appointment-service-options label:hover>span{border-color:var(--red)}
-.appointment-service-options input:checked+span{color:var(--paper);background:var(--red);border-color:var(--red)}
-.appointment-service-options input:focus-visible+span{outline:2px solid var(--red);outline-offset:3px}
-.calendar-block{margin-top:31px;padding-top:27px;border-top:1px solid var(--line)}
+.appointment-service-options label:hover>span{border-color:var(--blue)}
+.appointment-service-options input:checked+span{color:var(--paper);background:var(--blue);border-color:var(--blue)}
+.appointment-service-options input:focus-visible+span{outline:2px solid var(--blue);outline-offset:3px}
+.calendar-block{margin-top:31px;padding-top:27px;border-top:1px solid rgba(32,35,30,.32)}
 .calendar-toolbar{display:flex;align-items:center;justify-content:space-between;gap:15px;margin:24px 0 16px}
 .calendar-toolbar h3{font-family:var(--display);font-size:29px;font-weight:500;line-height:1.2;letter-spacing:.1px}
-.calendar-nav{display:flex;align-items:center;justify-content:center;width:35px;height:35px;border:1px solid var(--line);transition:background .2s,color .2s,border-color .2s}
+.calendar-nav{display:flex;align-items:center;justify-content:center;width:35px;height:35px;border:1px solid rgba(32,35,30,.45);transition:background .2s,color .2s,border-color .2s}
 .calendar-nav svg{width:16px;height:16px}
-.calendar-nav:hover:not(:disabled){background:var(--red);color:var(--paper);border-color:var(--red)}
+.calendar-nav:hover:not(:disabled){background:var(--blue);color:var(--paper);border-color:var(--blue)}
 .calendar-nav:disabled{opacity:.25;cursor:default}
 .calendar-table{width:100%;table-layout:fixed;border-collapse:separate;border-spacing:4px 5px;text-align:center}
 .calendar-table th{font-size:8px;font-weight:500;color:var(--muted);padding:0 0 10px}
 .calendar-table abbr{text-decoration:none;cursor:default}
 .calendar-table td{padding:0;height:41px}
-.calendar-day{display:flex;align-items:center;justify-content:center;position:relative;width:100%;height:41px;padding:0;font-size:12px;border:1px solid transparent;transition:background .2s,border-color .2s,color .2s}
-.calendar-day:hover:not(:disabled){background:#802e2b0e;border-color:#802e2b60}
+.calendar-day{display:flex;align-items:center;justify-content:center;position:relative;width:100%;height:41px;padding:0;font-size:12px;border:1px solid rgba(32,35,30,.18);transition:background .2s,border-color .2s,color .2s}
+.calendar-day:hover:not(:disabled){background:#1f4b7a0e;border-color:#1f4b7a60}
 .calendar-day:disabled{color:var(--muted);opacity:.28;cursor:default}
-.calendar-day[aria-current=date]{border-color:#802e2b77}
-.calendar-day[aria-current=date]::after{content:'';position:absolute;bottom:5px;width:3px;height:3px;background:var(--red);border-radius:50%}
-.calendar-day[aria-pressed=true]{background:var(--red);border-color:var(--red);color:var(--paper)}
-.calendar-day[aria-pressed=true]:hover{background:#65201e;border-color:#65201e}
+.calendar-day[aria-current=date]{border-color:#1f4b7a77}
+.calendar-day[aria-current=date]::after{content:'';position:absolute;bottom:5px;width:3px;height:3px;background:var(--blue);border-radius:50%}
+.calendar-day[aria-pressed=true]{background:var(--blue);border-color:var(--blue);color:var(--paper)}
+.calendar-day[aria-pressed=true]:hover{background:#163759;border-color:#163759}
 .calendar-day[aria-current=date][aria-pressed=true]::after{background:var(--paper)}
-.calendar-day:focus-visible{outline-offset:1px;outline-color:var(--red)}
+.calendar-day:focus-visible{outline-offset:1px;outline-color:var(--blue)}
 .calendar-legend{display:flex;align-items:center;gap:22px;padding:15px 4px 0;font-size:8px;color:var(--muted)}
 .calendar-legend>span{display:flex;align-items:center;gap:7px}
-.calendar-legend i{width:8px;height:8px;display:inline-block;border:1px solid var(--red)}
-.legend-selected{background:var(--red)}
+.calendar-legend i{width:8px;height:8px;display:inline-block;border:1px solid var(--blue)}
+.legend-selected{background:var(--blue)}
 .calendar-note{font-size:10px;color:var(--muted);line-height:1.75;margin:17px 4px 0;max-width:380px}
 .appointment-details{display:grid;grid-template-columns:1fr 1fr;gap:22px;margin-top:27px;padding-top:25px;border-top:1px solid var(--line)}
 .appointment-field{display:flex;flex-direction:column;gap:11px;min-width:0;position:relative}
@@ -48,8 +48,8 @@
 .appointment-field input[type=time]{font-size:18px;font-family:var(--display);font-weight:500;letter-spacing:1px;min-height:43px}
 .appointment-field input::placeholder{color:#8d8b82;font-size:11px}
 .appointment-field small{font-size:8px;color:var(--muted);line-height:1.5}
-.appointment-field input[aria-invalid=true]{border-color:var(--red)}
-.booking-error{color:var(--red);font-size:11px;line-height:1.7;margin-top:16px}
+.appointment-field input[aria-invalid=true]{border-color:var(--blue)}
+.booking-error{color:var(--blue);font-size:11px;line-height:1.7;margin-top:16px}
 .booking-error:empty{margin:0}
 .appointment-summary{background:var(--ink);color:var(--paper);padding:32px 33px;position:relative;min-width:0}
 .summary-top{display:flex;justify-content:space-between;align-items:center;font-size:7px;letter-spacing:1px;color:#c1c2b4;gap:20px}

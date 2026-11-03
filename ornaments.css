@@ -1,5 +1,5 @@
 /* Lines and intersection nodes. No marks inside the grid cells. */
-:root{--ornament-color:#802e2b;--ornament-strong:rgba(128,46,43,.66);--ornament-line:rgba(128,46,43,.29)}
+:root{--ornament-color:#1f4b7a;--ornament-strong:rgba(31,75,122,.66);--ornament-line:rgba(31,75,122,.29)}
 .hero,.section-shell,.craft-strip{isolation:isolate;position:relative}
 .site-header{background:url('assets/drafting-grid.svg?v=2') center/168px 168px}
 .hero::before,.section-shell::before,.craft-strip::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;border:0;background:url('assets/drafting-grid.svg?v=2') center/168px 168px}
