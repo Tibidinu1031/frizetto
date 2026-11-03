@@ -1,12 +1,13 @@
 /* Lines and intersection nodes. No marks inside the grid cells. */
-:root{--ornament-color:#1f4b7a;--ornament-strong:rgba(31,75,122,.66);--ornament-line:rgba(31,75,122,.29)}
+:root{--ornament-color:#1f4b7a;--ornament-strong:rgba(31,75,122,.66);--ornament-line:rgba(31,75,122,.29);--backdrop-opacity:.5;--ornaments-opacity:.6}
+/* The grid and the ornaments sit behind the text at reduced opacity, so every word stays readable where a line or node crosses it. */
 .hero,.section-shell,.craft-strip{isolation:isolate;position:relative}
-.site-header{background:url('assets/drafting-grid.svg?v=2') center/168px 168px}
-.hero::before,.section-shell::before,.craft-strip::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;border:0;background:url('assets/drafting-grid.svg?v=2') center/168px 168px}
+.site-header::before{content:'';position:absolute;inset:0;z-index:-1;pointer-events:none;background:url('assets/drafting-grid.svg?v=2') center/168px 168px;opacity:var(--backdrop-opacity)}
+.hero::before,.section-shell::before,.craft-strip::before{content:'';position:absolute;inset:0;pointer-events:none;z-index:0;border:0;background:url('assets/drafting-grid.svg?v=2') center/168px 168px;opacity:var(--backdrop-opacity)}
 .hero>:not(.section-ornaments),.section-shell>:not(.section-ornaments),.craft-strip>div{position:relative;z-index:1}
 .portfolio,.contact,.craft-strip{--ornament-color:#eeeae1;--ornament-strong:rgba(238,234,225,.75);--ornament-line:rgba(238,234,225,.31)}
 .portfolio::before,.contact::before,.craft-strip::before{filter:brightness(0) invert(1)}
-.section-ornaments{position:absolute!important;inset:0;z-index:0;pointer-events:none;overflow:hidden;color:var(--ornament-color)}
+.section-ornaments{position:absolute!important;inset:0;z-index:0;pointer-events:none;overflow:hidden;color:var(--ornament-color);opacity:var(--ornaments-opacity)}
 .section-ornaments span{position:absolute;display:block}
 .ornament-corner{width:68px;height:48px;left:17px;top:18px;background:radial-gradient(circle at 3px 3px,var(--ornament-strong) 3px,transparent 3.5px)}
 .ornament-corner::before,.ornament-corner::after{content:'';position:absolute;background:var(--ornament-strong)}
