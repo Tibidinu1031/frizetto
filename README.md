@@ -32,7 +32,7 @@ Deschide `http://localhost:4173`.
 
 - `index.html`: texte, date de contact, program, Google Maps, legături sociale și metadate.
 - `style.css`: culori în `:root`, tipografie, geometrie, animații și layout responsive.
-- `ornaments.css` și `assets/drafting-grid.svg`: liniile și punctele de intersecție, chenarele și variantele pentru fundalurile închise.
+- `ornaments.css` și `assets/drafting-grid.svg`: liniile și punctele de intersecție, chenarele și variantele pentru fundalurile închise. Grila și ornamentele sunt ușor transparente, ca textul să se citească peste tot; transparența se reglează din `--backdrop-opacity` și `--ornaments-opacity`.
 - `hero.css`: încadrarea meniului, hero-ului și bannerului în primul ecran pe toate dimensiunile; animația continuă a bannerului spre stânga, cu pauză la hover și respectarea preferinței de mișcare redusă.
 - `intro.css`, `intro.js`: ecranul de deschidere cu logo-ul Frizetto.
 - `app.js`: galeria, filtrele, asocierea fotografiilor cu postările originale și interacțiunile.
